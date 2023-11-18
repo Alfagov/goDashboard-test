@@ -2,15 +2,15 @@ package main
 
 import (
 	"github.com/Alfagov/goDashboard/dashboard"
-	"github.com/Alfagov/goDashboard/layout"
 	"github.com/Alfagov/goDashboard/models"
-	"github.com/Alfagov/goDashboard/pages"
 	"github.com/Alfagov/goDashboard/pkg/form"
 	"github.com/Alfagov/goDashboard/pkg/graph"
 	"github.com/Alfagov/goDashboard/pkg/graphContainer"
+	"github.com/Alfagov/goDashboard/pkg/layout"
 	"github.com/Alfagov/goDashboard/pkg/numeric"
+	"github.com/Alfagov/goDashboard/pkg/pages"
+	"github.com/Alfagov/goDashboard/pkg/toolbox"
 	"github.com/Alfagov/goDashboard/pkg/widgets"
-	"github.com/Alfagov/goDashboard/toolbox"
 	"log"
 	"math/rand"
 	"time"
@@ -19,8 +19,8 @@ import (
 func main() {
 	dashboard.InitDashboardGlobals()
 	wd := numeric.NewNumeric(
+		"test1",
 		time.Second*5,
-		widgets.SetName("test1"),
 		widgets.SetDescription("test"),
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
@@ -40,8 +40,8 @@ func main() {
 	)
 
 	wd1 := numeric.NewNumeric(
+		"test2",
 		time.Second*5,
-		widgets.SetName("test2"),
 		widgets.SetDescription("test"),
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
@@ -61,8 +61,8 @@ func main() {
 	)
 
 	wd2 := numeric.NewNumeric(
+		"test3",
 		time.Second*5,
-		widgets.SetName("test3"),
 		widgets.SetDescription("test"),
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
@@ -82,8 +82,8 @@ func main() {
 	)
 
 	wd3 := numeric.NewNumeric(
+		"test4",
 		time.Second*5,
-		widgets.SetName("test4"),
 		widgets.SetDescription("test"),
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
@@ -103,8 +103,8 @@ func main() {
 	)
 
 	wd11 := numeric.NewNumeric(
+		"test5",
 		time.Second*5,
-		widgets.SetName("test5"),
 		widgets.SetDescription("test"),
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
@@ -124,8 +124,8 @@ func main() {
 	)
 
 	wd21 := numeric.NewNumeric(
+		"test6",
 		time.Second*5,
-		widgets.SetName("test6"),
 		widgets.SetDescription("test"),
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
@@ -145,8 +145,8 @@ func main() {
 	)
 
 	wd31 := numeric.NewNumeric(
+		"test7",
 		time.Second*5,
-		widgets.SetName("test7"),
 		widgets.SetDescription("test"),
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
@@ -193,7 +193,7 @@ func main() {
 		widgets.SetLayout(
 			layout.NewWidgetLayout(
 				layout.SetColumn(1), layout.SetRow(4),
-				layout.SetWidth(3), layout.SetHeight(2),
+				layout.SetWidth(2), layout.SetHeight(2),
 			),
 		),
 	)
@@ -244,14 +244,14 @@ func main() {
 			layout.NewWidgetLayout(
 				layout.SetColumn(1),
 				layout.SetRow(1),
-				layout.SetHeight(1),
+				layout.SetHeight(2),
 				layout.SetWidth(1),
 			),
 		)).
 		WithSettings(
 			form.SetFormUpdateHandler[formTest](
-				func(test formTest) *models.UpdateResponse {
-					return &models.UpdateResponse{
+				func(test formTest) *form.UpdateResponse {
+					return &form.UpdateResponse{
 						Success: true,
 						Message: "test",
 					}
@@ -262,7 +262,7 @@ func main() {
 				},
 			),
 			form.AddFormFields[formTest](
-				&f,
+				f,
 			),
 		)
 
